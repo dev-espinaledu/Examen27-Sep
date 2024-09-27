@@ -30,39 +30,7 @@ class Restaurante {
         this.pedidos = []; // Lista de pedidos
     }
 }
-// Se crea el menú
-let menu = [
-    new Plato("Hamburguesa", 16000),
-    new Plato("Pizza", 12000),
-    new Plato("Perro Caliente", 8000) // Me dio pereza agregar más productos
-];
-let pedido = new Pedido();
-// Mostrar el menú
-const menuElement = document.getElementById('menu');
-for (let i = 0; i < menu.length; i++) {
-    let li = document.createElement('li'); // Se crea un elemento de lista para cada uno de los platos
-    li.innerHTML = `${menu[i].nombre} - $${menu[i].precio} <button onclick="agregarAlPedido(${i})">Agregar</button>`;
-    menuElement.appendChild(li); // Se añade el plato al menú
-}
-// Agregar los platos al pedido
-function agregarAlPedido(index) {
-    let platoSeleccionado = menu[index]; // Seleccionar el plato del menú por el índice
-    pedido.agregarPlato(platoSeleccionado);
-    actualizarPedido();
-}
-// Actualizar el pedido
-function actualizarPedido() {
-    const pedidoElement = document.getElementById('pedido');
-    const totalElement = document.getElementById('total');
-    pedidoElement.innerHTML = ''; // Limpiar la lista de pedidos antes de actualizar
-    for (let i = 0; i < pedido.platos.length; i++) {
-        let li = document.createElement('li'); // Crear un elemento de lista para cada plato del pedido
-        li.textContent = `${pedido.platos[i].nombre} - $${pedido.platos[i].precio}`; // Mostrar el nombre y precio del plato
-        pedidoElement.appendChild(li); // Añadir el plato a la lista de pedidos
-    }
-    totalElement.textContent = pedido.calcularTotal(); // Actualizar el total a pagar
-}
-/* // Instancias
+// Instancias
 // Se crea un menú con algunos platos
 let menu = new Menu();
 menu.platos.push(new Plato("Hamburguesa", 16000));
@@ -77,4 +45,4 @@ let restaurante = new Restaurante();
 restaurante.menus.push(menu);
 restaurante.pedidos.push(pedido);
 // Imprimir el total del pedido
-console.log("Total del pedido: ", pedido.calcularTotal()); */
+console.log("Total del pedido: ", pedido.calcularTotal());
