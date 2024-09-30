@@ -30,7 +30,39 @@ class Restaurante {
         this.pedidos = []; // Lista de pedidos
     }
 }
-// Instancias
+// Se crea el menú
+let menu = [
+    new Plato("Hamburguesa", 16000),
+    new Plato("Pizza", 12000),
+    new Plato("Perro Caliente", 8000)
+];
+let pedido = new Pedido();
+// Mostrar el menú
+const menuElement = document.getElementById('menu');
+for (let i = 0; i < menu.length; i++) {
+    let li = document.createElement('li');
+    li.innerHTML = `${menu[i].nombre} - $${menu[i].precio} <button onclick="agregarAlPedido(${i})">Agregar</button>`;
+    menuElement.appendChild(li); // Se añade el plato al menú
+}
+// Agregar los platos al pedido
+function agregarAlPedido(i) {
+    let platoSeleccionado = menu[i];
+    pedido.agregarPlato(platoSeleccionado);
+    actualizarPedido();
+}
+// Actualizar el pedido
+function actualizarPedido() {
+    const pedidoElement = document.getElementById('pedido');
+    const totalElement = document.getElementById('total');
+    pedidoElement.innerHTML = '';
+    for (let i = 0; i < pedido.platos.length; i++) {
+        let li = document.createElement('li');
+        li.textContent = `${pedido.platos[i].nombre} - $${pedido.platos[i].precio}`;
+        pedidoElement.appendChild(li);
+    }
+    totalElement.textContent = pedido.calcularTotal();
+}
+/* // Instancias
 // Se crea un menú con algunos platos
 let menu = new Menu();
 menu.platos.push(new Plato("Hamburguesa", 16000));
@@ -45,4 +77,4 @@ let restaurante = new Restaurante();
 restaurante.menus.push(menu);
 restaurante.pedidos.push(pedido);
 // Imprimir el total del pedido
-console.log("Total del pedido: ", pedido.calcularTotal());
+console.log("Total del pedido: ", pedido.calcularTotal()); */
